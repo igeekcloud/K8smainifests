@@ -1,10 +1,12 @@
 version: 0.2
+
 phases:
-  pre_build:
+  install:
     commands:
-      - if [ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/master" ]; then
-          echo "Executing build for the master branch";
-        else
-          echo "Skipping build for non-master branch";
-          exit 0;
-        fi
+      - npm install
+  build:
+    commands:
+      - npm test
+artifacts:
+  files:
+    - '**/*'
